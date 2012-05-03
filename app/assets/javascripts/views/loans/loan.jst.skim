@@ -1,0 +1,6 @@
+li.clearfix
+	img.thumbnail.pull-left(src="//kiva.org/img/40/#{@imgID}.jpg")
+	.loan-info.pull-left
+		= @name
+		|  
+		strong= @country

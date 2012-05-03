@@ -1,0 +1,24 @@
+.row-fluid#main-holder
+	#left-sidebar.span3.pull-left
+		.holder
+			h3 Build Your Loans Filter
+			= simple_form_for "filter", :remote => true do |f|
+				= f.input "name"
+				= f.input "country"
+				= f.input "sector"
+				= f.input "activity"
+
+	ul#loans-list.unstyled.content(data-bind="foreach: loans")
+		li.clearfix(data-bind="click: function(){ $parent.selectedLoan.name(this.name).image(this.image.id); }")
+			.sm-image.pull-left
+				img(data-bind="attr: { src: 'http://kiva.org/img/120/'+image.id+'.jpg' }")
+			.info.pull-left
+				h3(data-bind="text: name")
+				h6(data-bind="text: location.town+', '+location.country")
+				.loan-detail
+					span(data-bind="text: '$'+loan_amount+' helps '+use")
+
+
+	#right-sidebar.span5.pull-right
+		img.borrower-photo(data-bind="attr: { src: 'http://kiva.org/img/260/'+selectedLoan.image()+'.jpg' }")
+		h3(data-bind="text: selectedLoan.name()")

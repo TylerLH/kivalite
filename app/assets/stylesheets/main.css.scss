@@ -1,0 +1,63 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main-holder {
+	height: 100%;
+
+	#left-sidebar {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 240px;
+    height: 100%;
+    @include background-image(linear-gradient(bottom right, $grayLighter, lighten($grayLighter,1%)));
+    border-right: 1px solid darken($grayLighter,5%);
+    text-align: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+
+    .holder {
+    	text-align: left;
+    }
+	}
+
+	#right-sidebar {
+    position: fixed;
+    top: 0;
+    right:0;
+    width: 300px;
+    height: 100%;
+    @include background-image(linear-gradient($green, lighten($green,10%)));
+    @include box-shadow(darken($green,10%) 10px 0 10px -5px inset);
+    text-align: center;
+
+    #{headers(5)} {
+    	color: $white;
+    	@include text-shadow(darken($green,10%) 0 1px 1px);
+    }
+
+    .borrower-photo {
+    	margin-top: 1em;
+    	@include border-radius(4px);
+    	@include box-shadow(darken($green,10%) 0 0 3px 1px);
+    }
+	}
+
+	.content {
+	    margin: 0 300px 0 240px; /* width of sidebars + 10px of margin */
+	}
+}
+
+#loans-list li {
+	margin: .5em 0;
+	@include transition-property(background);
+	@include transition-duration(.3s);
+	&:hover {
+		background: rgba($grayLighter, .6);
+	}
+
+	.sm-image {
+		margin-right: .5em;
+	}
+}
