@@ -5,7 +5,11 @@
 			= simple_form_for "filter", :remote => true do |f|
 				= f.input "name", required: false
 				= f.input "country", required: false, input_html: { "data-bind" => "value: filter.country"}
-				= f.input "sector", required: false, :as => :check_boxes, :collection => Loan::SECTORS, :label => "Filter by Sector", input_html: { "data-bind" => "event: { click: function(){console.log(this)} }"}
+				/ = f.input "sector", required: false, :as => :check_boxes, :collection => Loan::SECTORS, :label => "Filter by Sector", input_html: { "data-bind" => "click: addSector"}
+				- Loan::SECTORS.each do |sector|
+					label.checkbox
+						input(type="checkbox" name="sector" value="#{sector}" data-bind="click: function(){ addSector('#{sector}'); return true;}")
+						span.checkbox-label= sector
 				= f.input "activity", required: false
 
 	ul#loans-list.unstyled.content(data-bind="foreach: loans")
@@ -16,7 +20,7 @@
 				h3
 					span(data-bind="text: name")
 					| &nbsp;
-					small(data-bind="text: location.town+', '+location.country")
+					small(data-bind="text: location.country")
 				span(data-bind="text: sector+' &raquo; '+activity")
 				.loan-detail
 					/span(data-bind="text: '$'+loan_amount+' helps '+use")

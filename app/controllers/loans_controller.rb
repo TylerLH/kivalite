@@ -18,7 +18,7 @@ class LoansController < ApplicationController
     else
       country = ""
     end
-    response = HTTParty.get("http://api.kivaws.org/v1/loans/search.json?country_code=#{country}")
+    response = HTTParty.get("http://api.kivaws.org/v1/loans/search.json?country_code=#{country}&sector=#{params[:sector].join(',')}")
     respond_with response.body
   end
 end

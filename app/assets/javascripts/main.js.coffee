@@ -29,11 +29,15 @@ $ ->
 						country: ko.observable(first_loan.location.country)
 
 				updateLoans: =>
+					options = {}
+					if @filter.sector()
+						options["sector"] = @filter.sector()
+					if @filter.country()
+						options["country"] = @filter.country()
 					$.ajax
 						url: '/loans/search.json'
 						data:
-							country: @filter.country
-							sector: @filter.sector
+							options
 						success: (response) =>
 							if response.loans.length > 0
 								@loans.removeAll()
@@ -50,6 +54,12 @@ $ ->
 							page: @currentPage + 1
 						success: (response) =>
 							console.log response
+
+				addSector: (sector) ->
+					@filter.sector.push(sector.toLowerCase())
+					console.log @filter.sector().join()
+					@updateLoans()
+					console.log "added #{sector} to filter"
 
 				selectLoan: (loan) =>
 					@selectedLoan.name(loan.name).image(loan.image.id)
