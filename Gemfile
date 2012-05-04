@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'country_select'
 gem 'thin'
 gem 'httparty'
+gem 'countries', :git => "git://github.com/hexorx/countries.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,6 +23,7 @@ group :assets do
   gem 'underscore-rails'
   gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '2.0.3'
   gem 'font-awesome-sass-rails'
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'

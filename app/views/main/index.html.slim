@@ -3,22 +3,26 @@
 		.holder
 			h3 Build Your Loans Filter
 			= simple_form_for "filter", :remote => true do |f|
-				= f.input "name"
-				= f.input "country"
-				= f.input "sector"
-				= f.input "activity"
+				= f.input "name", required: false
+				= f.input "country", required: false, input_html: { "data-bind" => "value: filter.country"}
+				= f.input "sector", required: false, :as => :check_boxes, :collection => Loan::SECTORS, :label => "Filter by Sector", input_html: { "data-bind" => "event: { click: function(){console.log(this)} }"}
+				= f.input "activity", required: false
 
 	ul#loans-list.unstyled.content(data-bind="foreach: loans")
-		li.clearfix(data-bind="click: function(){ $parent.selectedLoan.name(this.name).image(this.image.id); }")
+		li.clearfix(data-bind="click: function(){ $parent.selectLoan(this); }")
 			.sm-image.pull-left
-				img(data-bind="attr: { src: 'http://kiva.org/img/120/'+image.id+'.jpg' }")
+				img(data-bind="attr: { src: '//kiva.org/img/140/'+image.id+'.jpg' }")
 			.info.pull-left
-				h3(data-bind="text: name")
-				h6(data-bind="text: location.town+', '+location.country")
+				h3
+					span(data-bind="text: name")
+					| &nbsp;
+					small(data-bind="text: location.town+', '+location.country")
+				span(data-bind="text: sector+' &raquo; '+activity")
 				.loan-detail
-					span(data-bind="text: '$'+loan_amount+' helps '+use")
+					/span(data-bind="text: '$'+loan_amount+' helps '+use")
 
 
 	#right-sidebar.span5.pull-right
-		img.borrower-photo(data-bind="attr: { src: 'http://kiva.org/img/260/'+selectedLoan.image()+'.jpg' }")
+		img.borrower-photo(data-bind="attr: { src: '//kiva.org/img/260/'+selectedLoan.image()+'.jpg' }")
 		h3(data-bind="text: selectedLoan.name()")
+		h6(data-bind="text: selectedLoan.location.town()+', '+selectedLoan.location.country()")

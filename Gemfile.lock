@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/hexorx/countries.git
+  revision: 4284b616a37808ead83d6f6c892a889f0e6032d1
+  specs:
+    countries (0.8.2)
+      currencies (= 0.4.0)
+      currencies (>= 0.2.0)
+
+GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
   revision: 9fd4110230619cf8cf9705746ee74a48b73ef024
   branch: 2.0.3
@@ -52,6 +60,7 @@ GEM
     compass-rails (1.0.1)
       compass (~> 0.12.0)
     country_select (0.0.2)
+    currencies (0.4.0)
     daemons (1.1.8)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -157,6 +166,7 @@ DEPENDENCIES
   bootstrap-sass!
   coffee-rails (~> 3.2.1)
   compass-rails
+  countries!
   country_select
   font-awesome-sass-rails
   httparty

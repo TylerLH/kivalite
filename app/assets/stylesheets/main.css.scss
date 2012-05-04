@@ -15,7 +15,7 @@
     border-right: 1px solid darken($grayLighter,5%);
     text-align: center;
     box-sizing: border-box;
-    padding-left: 10px;
+    padding: 10px 0 0 10px;
 
     .holder {
     	text-align: left;
@@ -31,16 +31,23 @@
     @include background-image(linear-gradient($green, lighten($green,10%)));
     @include box-shadow(darken($green,10%) 10px 0 10px -5px inset);
     text-align: center;
+    box-sizing: border-box;
+    padding: 0 10px;
 
     #{headers(5)} {
     	color: $white;
     	@include text-shadow(darken($green,10%) 0 1px 1px);
     }
 
+    h6 {
+        color: $grayLighter;
+    }
+
     .borrower-photo {
     	margin-top: 1em;
     	@include border-radius(4px);
     	@include box-shadow(darken($green,10%) 0 0 3px 1px);
+        border: 3px solid $white;
     }
 	}
 
@@ -60,4 +67,8 @@
 	.sm-image {
 		margin-right: .5em;
 	}
+
+    .info {
+        width: 70%;
+    }
 }
